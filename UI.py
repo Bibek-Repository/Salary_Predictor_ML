@@ -11,7 +11,7 @@ model = joblib.load("linear_model.pkl")
 # Page configuration
 # -----------------------------
 st.set_page_config(
-    page_title="salary according to years of experience",
+    page_title="salary predictor by Bibek Baiju",
     page_icon="💼",
     layout="centered"
 )
@@ -30,7 +30,7 @@ st.markdown("""
 # Sidebar for input
 # -----------------------------
 st.sidebar.header("Input years of experience")
-cgpa = st.sidebar.number_input(
+salary = st.sidebar.number_input(
     "Enter your years of experience (0.0 - 20.0):", 
     min_value=0.0, max_value=20.0, value=3.0, step=1.0
 )
@@ -38,14 +38,14 @@ cgpa = st.sidebar.number_input(
 # -----------------------------
 # Predict Button & Output
 # -----------------------------
-if st.button("Predict Package"):
-    X_new = np.array([[cgpa]])  # Convert input to 2D
-    predicted_package = model.predict(X_new)[0]
+if st.button("Predict Salary"):
+    X_new = np.array([[salary]])  # Convert input to 2D
+    predicted_Salary = model.predict(X_new)[0]
 
     # Show result in a styled container
     st.markdown(f"""
     <div style="background-color:#e0f7fa;padding:20px;border-radius:10px;margin-top:20px">
-    <h2 style="text-align:center;color:#00796b;">Predicted Package: {predicted_package:.2f} LPA</h2>
+    <h2 style="text-align:center;color:#00796b;">Predicted Salary: {predicted_Salary:.2f} NPR</h2>
     </div>
     """, unsafe_allow_html=True)
 
